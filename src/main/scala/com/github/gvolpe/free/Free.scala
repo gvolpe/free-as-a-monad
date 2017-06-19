@@ -1,10 +1,11 @@
 package com.github.gvolpe.free
 
-import cats.{Monad, ~>}
+import cats.Monad
 import com.github.gvolpe.free.Free._
 
 import scala.language.higherKinds
 
+// Or use cats.free.Free
 sealed trait Free[F[_], A] {
   def flatMap[B](f: A => Free[F, B]): Free[F, B] = Bind(this, f)
 
@@ -17,6 +18,11 @@ sealed trait Free[F[_], A] {
       f(e).foldMap(nt)
     }
   }
+}
+
+// Or just use cats.~>
+trait ~>[F[_], G[_]] {
+  def apply[A](fa: F[A]): G[A]
 }
 
 object Free {
