@@ -3,7 +3,6 @@ package com.github.gvolpe.free
 import java.nio.file.{Files, Paths}
 
 import cats.effect.IO
-import com.github.gvolpe.free.DiskIO.{Delete, Read, Write}
 
 object IOInterpreter {
   def apply: DiskIO ~> IO = new (DiskIO ~> IO)  {

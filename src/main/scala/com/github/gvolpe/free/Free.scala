@@ -28,7 +28,7 @@ trait ~>[F[_], G[_]] {
 object Free {
   def pure[F[_], A](a: A): Free[F, A] = Pure(a)
 
-  def liftM[F[_], A](fa: F[A]): Free[F, A] = Suspend(fa)
+  def liftF[F[_], A](fa: F[A]): Free[F, A] = Suspend(fa)
 
   final case class Pure[F[_], A](a: A) extends Free[F, A]
   final case class Suspend[F[_], A](fa: F[A]) extends Free[F, A]
